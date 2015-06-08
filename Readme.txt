@@ -1,6 +1,6 @@
 ================================================================================
 yƒ^ƒCƒgƒ‹zSearchJAR
-yVersion z1.3
+yVersion z
 y”z•zŒ`‘ÔzGPL(—˜—p‚µ‚Ä‚¢‚éICSharpCode.SharpZipLib.dll‚ªGPL‚È‚½‚ß)
 y“]@@Úz‰Â
 y’˜ ì Œ zCopyright 2003-2004 yoshi allright reserved.

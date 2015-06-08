@@ -42,6 +42,33 @@ namespace SearchJar
 			Application.Run(new Form1());
 		}
 
+        private void disp(ArrayList arr_class)
+        {
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            lv_result.Items.Clear();		// 表示リストクリア
+
+            // リスト表示
+            for (int i = 0; i < arr_class.Count; i++)
+            {
+                Jar.ClassRec oRec = (Jar.ClassRec)arr_class[i];
+                ListViewItem item = lv_result.Items.Add(oRec.jarFileName);
+                item.SubItems.Add(oRec.className);
+            }
+            lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Cursor.Current = Cursors.Default;
+            DispCount();
+        }
+        
+        private void DispCount()
+        {
+            toolStripStatusLabel1.Text = String.Format(
+                "{0}件",
+                lv_result.Items.Count);
+
+        }
+
 		// イベントハンドラ 
 		//////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,44 +96,10 @@ namespace SearchJar
 			string sDir =  text_dir.Text;
 			string sClassName = text_class_name.Text;
 
-			// ディレクトリで*.jarファイルを検索
-			ArrayList arr_jar_files = new ArrayList();
-			Util.GetFileNames(sDir,"*.jar",ref arr_jar_files);
-
-			// jarファイル毎にクラス検索		
-			for ( int i = 0;i<arr_jar_files.Count;i++) 
-			{
-				string sJarFileName = arr_jar_files[i].ToString();
-				
-				int iRet = m_oJar.SearchClass(sJarFileName,sClassName);
-				if (iRet == -1)
-				{
-					MessageBox.Show(m_oJar.ErrMsg);
-					break;
-				}
-			}
-
-			lv_result.Items.Clear();		// 表示リストクリア
-
-			// リスト表示
-			for (int i=0;i<m_oJar.arr_class.Count;i++)
-			{
-				Jar.ClassRec oRec = (Jar.ClassRec)m_oJar.arr_class[i];
-                ListViewItem item = lv_result.Items.Add(oRec.sJarFileName);
-				item.SubItems.Add(oRec.sClassName);
-			}
-            lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            Cursor.Current = Cursors.Default;
-            DispCount();
+            m_oJar.SearchDir(sDir, sClassName);
+            disp(m_oJar.arr_class);
         }
 
-        private void DispCount()
-        {
-            toolStripStatusLabel1.Text = String.Format(
-                "{0}件",
-                lv_result.Items.Count);
-
-		}
 
 		// 表示絞込みボタン
 		private void button_filter_Click(object sender, System.EventArgs e)
@@ -117,28 +110,8 @@ namespace SearchJar
 			string sFilter_jar = text_filter_jar.Text;
 			string sFilter_class =  text_filter_class.Text;
 
-			// リスト表示
-			for (int i=0;i<m_oJar.arr_class.Count;i++)
-			{
-				Jar.ClassRec oRec = (Jar.ClassRec)m_oJar.arr_class[i];
-				if (sFilter_jar.Length != 0) 
-				{
-					if (oRec.sJarFileName.IndexOf(sFilter_jar) == -1)
-						continue;
-				}
-
-				if (sFilter_class.Length != 0) 
-				{
-					if (oRec.sClassName.IndexOf(sFilter_class) == -1)
-						continue;
-				}
-
-                ListViewItem item = lv_result.Items.Add(oRec.sJarFileName);
-				item.SubItems.Add(oRec.sClassName);
-			}
-            lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            Cursor.Current = Cursors.Default;
-            DispCount();
+            ArrayList arr = m_oJar.FilterClass(sFilter_jar, sFilter_class);
+            disp(arr);
 		}
 		
 		// ファイルに出力ボタン
@@ -186,18 +159,7 @@ namespace SearchJar
 				MessageBox.Show(m_oJar.ErrMsg);
 				return;
 			}
-
-            lv_result.Items.Clear();	// 表示リストクリア
-
-			// リスト表示
-			for (int i=0;i<m_oJar.arr_class.Count;i++)
-			{
-				Jar.ClassRec oRec = (Jar.ClassRec)m_oJar.arr_class[i];
-                ListViewItem item = lv_result.Items.Add(oRec.sJarFileName);
-				item.SubItems.Add(oRec.sClassName);
-			}
-            lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            DispCount();
+            disp(m_oJar.arr_class);
 		
 		}
 

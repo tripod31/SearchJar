@@ -3,6 +3,7 @@ using System.Collections;	// ArrayList
 using System.IO;
 using System.Text;
 using Microsoft.VisualBasic.FileIO;
+using System.Linq;
 
 namespace SearchJar
 {
@@ -12,10 +13,10 @@ namespace SearchJar
 	
 	public class Jar
 	{
-		public struct ClassRec
+		public class ClassRec
 		{
-			public string sJarFileName;
-			public string sClassName;
+			public string jarFileName { get; set; }
+			public string className { get; set; }
 		};
 
 		public const string TMP_FILENAME = "tmp_jar_list.txt";
@@ -51,8 +52,40 @@ namespace SearchJar
 
 		}
 
-		//　Jarファイルの中からクラスを検索
-		public int SearchClass(string _jarFileName,string _className)
+        // 指定ディレクトリ下のJARファイル内のクラスをリスト
+        public int SearchDir(string sDir,string sClassName)
+        {
+            m_arr_class.Clear();
+            // ディレクトリで*.jarファイルを検索
+            ArrayList arr_jar_files = new ArrayList();
+            Util.GetFileNames(sDir, "*.jar", ref arr_jar_files);
+
+            // jarファイル毎にクラス検索		
+            for (int i = 0; i < arr_jar_files.Count; i++)
+            {
+                string sJarFileName = arr_jar_files[i].ToString();
+
+                int iRet = SearchClass(sJarFileName, sClassName);
+            }
+            return 0;
+        }
+
+        public ArrayList FilterClass(string filter_jar, string filter_class)
+        {
+            //LINQ
+            var query = from ClassRec c in arr_class
+                        where c.jarFileName.Contains(filter_jar) && c.className.Contains(filter_class)
+                        select c;
+
+            // convert query to arraylist
+            ArrayList arr = new ArrayList();
+            foreach (ClassRec c in query)
+                arr.Add(c);
+            return arr;
+        }
+
+		//　Jarファイル内のクラスをリストに追加
+		private int SearchClass(string _jarFileName,string _className)
 		{
             //ZipFileオブジェクトの作成
             ICSharpCode.SharpZipLib.Zip.ZipFile zf =
@@ -65,8 +98,8 @@ namespace SearchJar
                     ((ze.Name.IndexOf(_className) != -1) || (_className.Length == 0)))
                 {
                     ClassRec oRec = new ClassRec();
-                    oRec.sJarFileName = _jarFileName;
-                    oRec.sClassName = ze.Name;
+                    oRec.jarFileName = _jarFileName;
+                    oRec.className = ze.Name;
                     m_arr_class.Add(oRec);
                 }
             }
@@ -102,18 +135,18 @@ namespace SearchJar
 				if ( sFilter_jar.Length != 0 ) 
 				{
 					// フィルタにマッチしない場合スキップ
-					if (oRec.sJarFileName.IndexOf(sFilter_jar) == -1)
+					if (oRec.jarFileName.IndexOf(sFilter_jar) == -1)
 						continue;
 				}
 				
 				if ( sFilter_class.Length != 0 ) 
 				{
 					// フィルタにマッチしない場合スキップ
-					if (oRec.sClassName.IndexOf(sFilter_class) == -1)
+					if (oRec.className.IndexOf(sFilter_class) == -1)
 						continue;
 				}
 
-				string sLine = string.Format("\"{0}\",\"{1}\"",oRec.sJarFileName,oRec.sClassName);
+				string sLine = string.Format("\"{0}\",\"{1}\"",oRec.jarFileName,oRec.className);
 				sw.WriteLine(sLine);
 			}
 
@@ -145,8 +178,8 @@ namespace SearchJar
 			{	
 				string[] token = parser.ReadFields();
 				ClassRec oRec = new ClassRec();
-				oRec.sJarFileName = token[0];
-				oRec.sClassName = token[1];
+				oRec.jarFileName = token[0];
+				oRec.className = token[1];
 				m_arr_class.Add(oRec);
 			}
 

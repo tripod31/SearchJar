@@ -7,7 +7,6 @@ APP_NAME="searchjar"
 COPY_FILES=
     [
     "bin/release/searchjar.exe",
-    "bin/release/common.dll",
     "bin/release/ICSharpCode.SharpZipLib.dll",
     "readme.txt",
     "COPYING",

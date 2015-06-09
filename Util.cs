@@ -4,14 +4,14 @@ using System.Windows.Forms;	// Application
 using System.IO;
 using System.Text;			// Encording
 using System.Diagnostics;	// Process
-using Common;
+//using Common;
 
 namespace SearchJar
 {
 	/// <summary>
 	/// Util ÇÃäTóvÇÃê‡ñæÇ≈Ç∑ÅB
 	/// </summary>
-	public class Util:UtilBase
+	public class Util
 	{
  
 		public Util()

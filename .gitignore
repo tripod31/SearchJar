@@ -191,3 +191,5 @@ ModelManifest.xml
 *.bat
 make_dist.bat
 *.rb
+make_dist.rb
+*.bat

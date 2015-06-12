@@ -4,7 +4,6 @@ using System.Windows.Forms;	// Application
 using System.IO;
 using System.Text;			// Encording
 using System.Diagnostics;	// Process
-//using Common;
 
 namespace SearchJar
 {

@@ -47,4 +47,6 @@ CSVファイルから読み込んでリスト表示します。
 検索を実行します。
 
 ####「絞込み」ボタン
-検索結果からJAR名、クラス名で絞り込んでリスト表示します。
+検索結果からJAR名、クラス名で絞り込んでリスト表示します。  
+
+<img src="http://www.geocities.jp/tripod31hoge/images/searchjar.jpg">

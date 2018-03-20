@@ -84,7 +84,7 @@ namespace SearchJar
 
 		}
 
-		// 実行ボタン
+		// 検索ボタン
 		private void button_search_Click(object sender, System.EventArgs e)
 		{
 			if (text_dir.Text.Length == 0)
@@ -101,7 +101,7 @@ namespace SearchJar
         }
 
 
-		// 表示絞込みボタン
+		// 絞込みボタン
 		private void button_filter_Click(object sender, System.EventArgs e)
 		{
             Cursor.Current = Cursors.WaitCursor;

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SearchJAR")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("home")]
+[assembly: AssemblyCompany("yoshi")]
 [assembly: AssemblyProduct("SearchJAR")]
 [assembly: AssemblyCopyright("Copyright (C) home 2008")]
 [assembly: AssemblyTrademark("")]

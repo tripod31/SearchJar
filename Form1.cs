@@ -85,7 +85,7 @@ namespace SearchJar
 		}
 
 		// é¿çsÉ{É^Éì
-		private void button_go_Click(object sender, System.EventArgs e)
+		private void button_search_Click(object sender, System.EventArgs e)
 		{
 			if (text_dir.Text.Length == 0)
 				return;

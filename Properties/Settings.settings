@@ -1,17 +1,17 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SearchJar.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SearchZip.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="DIR" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CLASS_NAME" Type="System.String" Scope="User">
+    <Setting Name="FILE_NAME" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="FILTER_JAR" Type="System.String" Scope="User">
+    <Setting Name="FILTER_ZIP" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="FILTER_CLASS" Type="System.String" Scope="User">
+    <Setting Name="FILTER_FILE" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="main_loc" Type="System.Drawing.Point" Scope="User">
@@ -26,6 +26,9 @@
   &lt;string&gt;200&lt;/string&gt;
   &lt;string&gt;200&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ZIP_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\.(zip|jar)$</Value>
     </Setting>
   </Settings>
 </SettingsFile>

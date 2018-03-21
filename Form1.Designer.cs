@@ -1,6 +1,6 @@
 using System.Windows.Forms;
 
-namespace SearchJar
+namespace SearchZip
 {
     partial class Form1
     {
@@ -37,14 +37,16 @@ namespace SearchJar
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.text_filter_jar = new System.Windows.Forms.TextBox();
+            this.text_filter_zip = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.text_filter_class = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.text_filter_file = new System.Windows.Forms.TextBox();
             this.button_filter = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.text_zip_name = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.text_class_name = new System.Windows.Forms.TextBox();
+            this.text_file_name = new System.Windows.Forms.TextBox();
             this.text_dir = new System.Windows.Forms.TextBox();
             this.button_search = new System.Windows.Forms.Button();
             this.button_dir = new System.Windows.Forms.Button();
@@ -72,7 +74,7 @@ namespace SearchJar
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "JAR";
+            columnHeader1.Text = "ZIP";
             columnHeader1.Width = 200;
             // 
             // panel1
@@ -82,56 +84,54 @@ namespace SearchJar
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(967, 200);
+            this.panel1.Size = new System.Drawing.Size(967, 277);
             this.panel1.TabIndex = 16;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.text_filter_jar);
+            this.groupBox2.Controls.Add(this.text_filter_zip);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.text_filter_class);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.text_filter_file);
             this.groupBox2.Controls.Add(this.button_filter);
-            this.groupBox2.Location = new System.Drawing.Point(11, 101);
+            this.groupBox2.Location = new System.Drawing.Point(12, 144);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(666, 85);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "絞込み";
             // 
-            // label3
+            // text_filter_zip
             // 
-            this.label3.Location = new System.Drawing.Point(12, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 17);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "JAR名";
-            // 
-            // text_filter_jar
-            // 
-            this.text_filter_jar.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchJar.Properties.Settings.Default, "FILTER_JAR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.text_filter_jar.Location = new System.Drawing.Point(96, 18);
-            this.text_filter_jar.Name = "text_filter_jar";
-            this.text_filter_jar.Size = new System.Drawing.Size(430, 19);
-            this.text_filter_jar.TabIndex = 17;
-            this.text_filter_jar.Text = global::SearchJar.Properties.Settings.Default.FILTER_JAR;
+            this.text_filter_zip.Location = new System.Drawing.Point(122, 18);
+            this.text_filter_zip.Name = "text_filter_zip";
+            this.text_filter_zip.Size = new System.Drawing.Size(404, 19);
+            this.text_filter_zip.TabIndex = 17;
+            this.text_filter_zip.Text = global::SearchZip.Properties.Settings.Default.FILTER_ZIP;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 51);
+            this.label2.Location = new System.Drawing.Point(11, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.Size = new System.Drawing.Size(108, 17);
             this.label2.TabIndex = 16;
-            this.label2.Text = "クラス名";
+            this.label2.Text = "ファイル名";
             // 
-            // text_filter_class
+            // label3
             // 
-            this.text_filter_class.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchJar.Properties.Settings.Default, "FILTER_CLASS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.text_filter_class.Location = new System.Drawing.Point(96, 51);
-            this.text_filter_class.Name = "text_filter_class";
-            this.text_filter_class.Size = new System.Drawing.Size(430, 19);
-            this.text_filter_class.TabIndex = 15;
-            this.text_filter_class.Text = global::SearchJar.Properties.Settings.Default.FILTER_CLASS;
+            this.label3.Location = new System.Drawing.Point(11, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 17);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "書庫ファイル名";
+            // 
+            // text_filter_file
+            // 
+            this.text_filter_file.Location = new System.Drawing.Point(122, 51);
+            this.text_filter_file.Name = "text_filter_file";
+            this.text_filter_file.Size = new System.Drawing.Size(404, 19);
+            this.text_filter_file.TabIndex = 15;
+            this.text_filter_file.Text = global::SearchZip.Properties.Settings.Default.FILTER_FILE;
             // 
             // button_filter
             // 
@@ -144,48 +144,66 @@ namespace SearchJar
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.text_zip_name);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.text_class_name);
+            this.groupBox1.Controls.Add(this.text_file_name);
             this.groupBox1.Controls.Add(this.text_dir);
             this.groupBox1.Controls.Add(this.button_search);
             this.groupBox1.Controls.Add(this.button_dir);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(11, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(666, 85);
+            this.groupBox1.Size = new System.Drawing.Size(666, 129);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索";
+            // 
+            // text_zip_name
+            // 
+            this.text_zip_name.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchZip.Properties.Settings.Default, "ZIP_NAME", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.text_zip_name.Location = new System.Drawing.Point(123, 51);
+            this.text_zip_name.Name = "text_zip_name";
+            this.text_zip_name.Size = new System.Drawing.Size(404, 19);
+            this.text_zip_name.TabIndex = 13;
+            this.text_zip_name.Text = global::SearchZip.Properties.Settings.Default.ZIP_NAME;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(12, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 17);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "書庫ファイル名";
             // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(12, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 17);
+            this.label4.Size = new System.Drawing.Size(108, 17);
             this.label4.TabIndex = 11;
-            this.label4.Text = "検索フォルダ";
+            this.label4.Text = "フォルダ";
             // 
-            // text_class_name
+            // text_file_name
             // 
-            this.text_class_name.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchJar.Properties.Settings.Default, "CLASS_NAME", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.text_class_name.Location = new System.Drawing.Point(97, 50);
-            this.text_class_name.Name = "text_class_name";
-            this.text_class_name.Size = new System.Drawing.Size(429, 19);
-            this.text_class_name.TabIndex = 10;
-            this.text_class_name.Text = global::SearchJar.Properties.Settings.Default.CLASS_NAME;
+            this.text_file_name.Location = new System.Drawing.Point(123, 83);
+            this.text_file_name.Name = "text_file_name";
+            this.text_file_name.Size = new System.Drawing.Size(404, 19);
+            this.text_file_name.TabIndex = 10;
+            this.text_file_name.Text = global::SearchZip.Properties.Settings.Default.FILE_NAME;
             // 
             // text_dir
             // 
-            this.text_dir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchJar.Properties.Settings.Default, "DIR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.text_dir.Location = new System.Drawing.Point(97, 19);
+            this.text_dir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SearchZip.Properties.Settings.Default, "DIR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.text_dir.Location = new System.Drawing.Point(123, 19);
             this.text_dir.Name = "text_dir";
-            this.text_dir.Size = new System.Drawing.Size(430, 19);
+            this.text_dir.Size = new System.Drawing.Size(404, 19);
             this.text_dir.TabIndex = 7;
-            this.text_dir.Text = global::SearchJar.Properties.Settings.Default.DIR;
+            this.text_dir.Text = global::SearchZip.Properties.Settings.Default.DIR;
             // 
             // button_search
             // 
-            this.button_search.Location = new System.Drawing.Point(542, 48);
+            this.button_search.Location = new System.Drawing.Point(542, 81);
             this.button_search.Name = "button_search";
             this.button_search.Size = new System.Drawing.Size(117, 21);
             this.button_search.TabIndex = 9;
@@ -203,11 +221,11 @@ namespace SearchJar
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 54);
+            this.label1.Location = new System.Drawing.Point(12, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 17);
+            this.label1.Size = new System.Drawing.Size(108, 17);
             this.label1.TabIndex = 6;
-            this.label1.Text = "検索クラス名";
+            this.label1.Text = "ファイル名";
             // 
             // lv_result
             // 
@@ -215,10 +233,10 @@ namespace SearchJar
             columnHeader1,
             this.columnHeader2});
             this.lv_result.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv_result.Location = new System.Drawing.Point(0, 200);
+            this.lv_result.Location = new System.Drawing.Point(0, 277);
             this.lv_result.Margin = new System.Windows.Forms.Padding(4);
             this.lv_result.Name = "lv_result";
-            this.lv_result.Size = new System.Drawing.Size(967, 191);
+            this.lv_result.Size = new System.Drawing.Size(967, 114);
             this.lv_result.TabIndex = 17;
             this.lv_result.UseCompatibleStateImageBehavior = false;
             this.lv_result.View = System.Windows.Forms.View.Details;
@@ -228,7 +246,7 @@ namespace SearchJar
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Class";
+            this.columnHeader2.Text = "File";
             this.columnHeader2.Width = 200;
             // 
             // menuStrip1
@@ -310,16 +328,16 @@ namespace SearchJar
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
-            this.ClientSize = global::SearchJar.Properties.Settings.Default.main_size;
+            this.ClientSize = global::SearchZip.Properties.Settings.Default.main_size;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripContainer1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SearchJar.Properties.Settings.Default, "main_loc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::SearchJar.Properties.Settings.Default, "main_size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::SearchZip.Properties.Settings.Default, "main_loc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::SearchZip.Properties.Settings.Default, "main_size", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = global::SearchJar.Properties.Settings.Default.main_loc;
+            this.Location = global::SearchZip.Properties.Settings.Default.main_loc;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "SearchJar";
+            this.Text = "SearchZIP";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.Form1_Closing);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -345,13 +363,13 @@ namespace SearchJar
         private Panel panel1;
         private GroupBox groupBox2;
         private Label label3;
-        private TextBox text_filter_jar;
+        private TextBox text_filter_zip;
         private Label label2;
-        private TextBox text_filter_class;
+        private TextBox text_filter_file;
         private Button button_filter;
         private GroupBox groupBox1;
         private Label label4;
-        private TextBox text_class_name;
+        private TextBox text_file_name;
         private TextBox text_dir;
         private Button button_search;
         private Button button_dir;
@@ -366,6 +384,7 @@ namespace SearchJar
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ColumnHeader columnHeader2;
-
+        private TextBox text_zip_name;
+        private Label label5;
     }
 }

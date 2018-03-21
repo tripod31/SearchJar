@@ -4,8 +4,9 @@ using System.Windows.Forms;	// Application
 using System.IO;
 using System.Text;			// Encording
 using System.Diagnostics;	// Process
+using System.Text.RegularExpressions;
 
-namespace SearchJar
+namespace SearchZip
 {
 	/// <summary>
 	/// Util の概要の説明です。
@@ -38,21 +39,21 @@ namespace SearchJar
 		}
 
 		// ファイルを再帰検索
-		public static void GetFileNames(string sStartDir,string sPattern,ref ArrayList arrRet)
+        // filter:   正規表現のフィルター
+		public static void GetFileNames(string sStartDir,Regex filter,ref ArrayList arrRet)
 		{
-			string [] sFileArr = Directory.GetFiles(sStartDir,sPattern);
-			for (int i=0;i<sFileArr.Length;i++) 
+			string[] sFileArr = Directory.GetFiles(sStartDir);
+			for (int i=0;i<sFileArr.Length;i++)
 			{
-				arrRet.Add(sFileArr[i]);
+                if (filter.IsMatch(sFileArr[i]))
+				    arrRet.Add(sFileArr[i]);
 			}
-			string [] sDirArr = Directory.GetDirectories(sStartDir);
+			string[] sDirArr = Directory.GetDirectories(sStartDir);
 			for (int i=0;i<sDirArr.Length;i++)
 			{
 				// 再帰呼び出し
-				GetFileNames(sDirArr[i],sPattern,ref arrRet);
+				GetFileNames(sDirArr[i],filter,ref arrRet);
 			}
 		}
-
-
 	}
 }

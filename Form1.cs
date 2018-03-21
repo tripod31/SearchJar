@@ -6,8 +6,9 @@ using System.Windows.Forms;
 using System.Data;
 using System.Text;			// StringBuilder
 using System.IO;
+using System.Text.RegularExpressions;
 
-namespace SearchJar
+namespace SearchZip
 {
 	/// <summary>
 	/// Form1 の概要の説明です。
@@ -16,7 +17,7 @@ namespace SearchJar
     {
 		
 		// メンバ変数
-		private Jar m_oJar;
+		private Zip m_oZip;
         private ArrayList m_arr_lv=new ArrayList();     // virtualListView用データ配列
 
         public Form1()
@@ -30,7 +31,7 @@ namespace SearchJar
             // TODO: InitializeComponent 呼び出しの後に、コンストラクタ コードを追加してください。
             //
 
-            m_oJar = new Jar();
+            m_oZip = new Zip();
             // ListViewの列幅を設定
             for (int i = 0;i< this.lv_result.Columns.Count; i++) {
                 this.lv_result.Columns[i].Width = Int32.Parse(Properties.Settings.Default.lv_column_width[i]);
@@ -46,14 +47,14 @@ namespace SearchJar
 			Application.Run(new Form1());
 		}
 
-        private void disp(ArrayList arr_class)
+        private void disp(ArrayList arr_file)
         {
-            // convert ClassRec to ListViewItem
+            // convert FileRec to ListViewItem
             m_arr_lv.Clear();
-            for (int idx = 0; idx < arr_class.Count; idx++)
+            for (int idx = 0; idx < arr_file.Count; idx++)
             {
-                Jar.ClassRec oClass = (Jar.ClassRec)arr_class[idx];
-                m_arr_lv.Add(new ListViewItem(new string[]{oClass.jarFileName,oClass.className}));
+                Zip.FileRec oFile = (Zip.FileRec)arr_file[idx];
+                m_arr_lv.Add(new ListViewItem(new string[]{oFile.zipFileName,oFile.fileName}));
             }
 
             lv_result.VirtualListSize = m_arr_lv.Count;
@@ -88,14 +89,18 @@ namespace SearchJar
 		{
 			if (text_dir.Text.Length == 0)
 				return;
+            Regex zipname = null;
+            try
+            {
+                zipname = new Regex(text_zip_name.Text);
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-			m_oJar.arr_class.Clear();	// リストクリア
-
-			string sDir =  text_dir.Text;
-			string sClassName = text_class_name.Text;
-
-            m_oJar.SearchDir(sDir, sClassName);
-            disp(m_oJar.arr_class);
+			m_oZip.arr_file.Clear();	// リストクリア
+            m_oZip.SearchDir(text_dir.Text, zipname, text_file_name.Text);
+            disp(m_oZip.arr_file);
         }
 
 
@@ -104,10 +109,7 @@ namespace SearchJar
 		{
             lv_result.Items.Clear();	// リストクリア
 
-			string sFilter_jar = text_filter_jar.Text;
-			string sFilter_class =  text_filter_class.Text;
-
-            ArrayList arr = m_oJar.FilterClass(sFilter_jar, sFilter_class);
+            ArrayList arr = m_oZip.FilterFile(text_filter_zip.Text, text_filter_file.Text);
             disp(arr);
 		}
 		
@@ -122,14 +124,11 @@ namespace SearchJar
 			if(  oDlg.ShowDialog() != DialogResult.OK)
 				return;
 
-			string sFilter_jar =  text_filter_jar.Text;
-			string sFilter_class =  text_filter_class.Text;
-
 			string sFile = oDlg.FileName;
-			int iRet = m_oJar.WriteCSV(sFile,sFilter_jar,sFilter_class);
+			int iRet = m_oZip.WriteCSV(sFile,text_filter_zip.Text,text_filter_file.Text);
 			if ( iRet == -1)
 			{
-				MessageBox.Show(m_oJar.ErrMsg);
+				MessageBox.Show(m_oZip.ErrMsg);
 			} 
 			else 
 			{
@@ -150,13 +149,13 @@ namespace SearchJar
 
 			string sFile = oDlg.FileName;
 
-			int iRet = m_oJar.ReadCSV(sFile);
+			int iRet = m_oZip.ReadCSV(sFile);
 			if (iRet == -1)
 			{
-				MessageBox.Show(m_oJar.ErrMsg);
+				MessageBox.Show(m_oZip.ErrMsg);
 				return;
 			}
-            disp(m_oJar.arr_class);
+            disp(m_oZip.arr_file);
 		
 		}
 

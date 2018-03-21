@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SearchJar.Properties {
+namespace SearchZip.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -38,36 +38,36 @@ namespace SearchJar.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CLASS_NAME {
+        public string FILE_NAME {
             get {
-                return ((string)(this["CLASS_NAME"]));
+                return ((string)(this["FILE_NAME"]));
             }
             set {
-                this["CLASS_NAME"] = value;
+                this["FILE_NAME"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FILTER_JAR {
+        public string FILTER_ZIP {
             get {
-                return ((string)(this["FILTER_JAR"]));
+                return ((string)(this["FILTER_ZIP"]));
             }
             set {
-                this["FILTER_JAR"] = value;
+                this["FILTER_ZIP"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FILTER_CLASS {
+        public string FILTER_FILE {
             get {
-                return ((string)(this["FILTER_CLASS"]));
+                return ((string)(this["FILTER_FILE"]));
             }
             set {
-                this["FILTER_CLASS"] = value;
+                this["FILTER_FILE"] = value;
             }
         }
         
@@ -106,6 +106,18 @@ namespace SearchJar.Properties {
             }
             set {
                 this["lv_column_width"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\.(zip|jar)$")]
+        public string ZIP_NAME {
+            get {
+                return ((string)(this["ZIP_NAME"]));
+            }
+            set {
+                this["ZIP_NAME"] = value;
             }
         }
     }

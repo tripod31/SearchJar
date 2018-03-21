@@ -8,9 +8,9 @@
     <ProjectGuid>{E81A7AE8-B411-42B7-8536-28BF23214DAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SearchJar</RootNamespace>
-    <AssemblyName>SearchJAR</AssemblyName>
-    <StartupObject>SearchJar.Form1</StartupObject>
+    <RootNamespace>SearchZip</RootNamespace>
+    <AssemblyName>SearchZip</AssemblyName>
+    <StartupObject>SearchZip.Form1</StartupObject>
     <ApplicationIcon>App.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
@@ -71,7 +71,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Jar.cs" />
+    <Compile Include="zip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -98,6 +98,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Util.cs" />
+    <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />

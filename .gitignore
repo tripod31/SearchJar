@@ -191,5 +191,6 @@ ModelManifest.xml
 
 #yoshi
 .vs/
+temp/
 *.bat
-*.rb
+*.py

@@ -20,11 +20,12 @@
     <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">967, 419</Value>
     </Setting>
-    <Setting Name="jar_width" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="class_width" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">200</Value>
+    <Setting Name="lv_column_width" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;200&lt;/string&gt;
+  &lt;string&gt;200&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

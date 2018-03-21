@@ -31,9 +31,10 @@ namespace SearchJar
             //
 
             m_oJar = new Jar();
-            this.lv_result.Columns[0].Width = Properties.Settings.Default.jar_width;
-            this.lv_result.Columns[1].Width = Properties.Settings.Default.class_width;
-
+            // ListViewの列幅を設定
+            for (int i = 0;i< this.lv_result.Columns.Count; i++) {
+                this.lv_result.Columns[i].Width = Int32.Parse(Properties.Settings.Default.lv_column_width[i]);
+            }
         }
 
         /// <summary>
@@ -162,8 +163,11 @@ namespace SearchJar
 		// 設定を保存
 		private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-            Properties.Settings.Default.jar_width= this.lv_result.Columns[0].Width;
-            Properties.Settings.Default.class_width = this.lv_result.Columns[1].Width;
+            // ListViewの列幅を保存
+            for (int i = 0; i < this.lv_result.Columns.Count; i++)
+            {
+                Properties.Settings.Default.lv_column_width[i]=this.lv_result.Columns[i].Width.ToString() ;
+            }
             Properties.Settings.Default.Save();	    // アプリ設定ファイル保存
 
 		}

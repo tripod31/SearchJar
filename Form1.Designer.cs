@@ -72,8 +72,8 @@ namespace SearchJar
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "JAR file";
-            columnHeader1.Width = 0;
+            columnHeader1.Text = "JAR";
+            columnHeader1.Width = 200;
             // 
             // panel1
             // 
@@ -222,11 +222,14 @@ namespace SearchJar
             this.lv_result.TabIndex = 17;
             this.lv_result.UseCompatibleStateImageBehavior = false;
             this.lv_result.View = System.Windows.Forms.View.Details;
+            this.lv_result.VirtualMode = true;
+            this.lv_result.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lv_result_RetrieveVirtualItem);
+            this.lv_result.VirtualItemsSelectionRangeChanged += new System.Windows.Forms.ListViewVirtualItemsSelectionRangeChangedEventHandler(this.lv_result_VirtualItemsSelectionRangeChanged);
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Class";
-            this.columnHeader2.Width = 0;
+            this.columnHeader2.Width = 200;
             // 
             // menuStrip1
             // 

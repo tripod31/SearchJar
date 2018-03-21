@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SearchJAR.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SearchJar.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="DIR" Type="System.String" Scope="User">
@@ -19,6 +19,12 @@
     </Setting>
     <Setting Name="main_size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">967, 419</Value>
+    </Setting>
+    <Setting Name="jar_width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="class_width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">200</Value>
     </Setting>
   </Settings>
 </SettingsFile>

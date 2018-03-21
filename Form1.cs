@@ -17,6 +17,7 @@ namespace SearchJar
 		
 		// メンバ変数
 		private Jar m_oJar;
+        private ArrayList m_arr_lv=new ArrayList();     // virtualListView用データ配列
 
         public Form1()
         {
@@ -30,13 +31,15 @@ namespace SearchJar
             //
 
             m_oJar = new Jar();
+            this.lv_result.Columns[0].Width = Properties.Settings.Default.jar_width;
+            this.lv_result.Columns[1].Width = Properties.Settings.Default.class_width;
 
         }
 
-		/// <summary>
-		/// アプリケーションのメイン エントリ ポイントです。
-		/// </summary>
-		[STAThread]
+        /// <summary>
+        /// アプリケーションのメイン エントリ ポイントです。
+        /// </summary>
+        [STAThread]
 		static void Main() 
 		{
 			Application.Run(new Form1());
@@ -44,20 +47,15 @@ namespace SearchJar
 
         private void disp(ArrayList arr_class)
         {
-
-            Cursor.Current = Cursors.WaitCursor;
-
-            lv_result.Items.Clear();		// 表示リストクリア
-
-            // リスト表示
-            for (int i = 0; i < arr_class.Count; i++)
+            // convert ClassRec to ListViewItem
+            m_arr_lv.Clear();
+            for (int idx = 0; idx < arr_class.Count; idx++)
             {
-                Jar.ClassRec oRec = (Jar.ClassRec)arr_class[i];
-                ListViewItem item = lv_result.Items.Add(oRec.jarFileName);
-                item.SubItems.Add(oRec.className);
+                Jar.ClassRec oClass = (Jar.ClassRec)arr_class[idx];
+                m_arr_lv.Add(new ListViewItem(new string[]{oClass.jarFileName,oClass.className}));
             }
-            lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            Cursor.Current = Cursors.Default;
+
+            lv_result.VirtualListSize = m_arr_lv.Count;
             DispCount();
         }
         
@@ -90,7 +88,6 @@ namespace SearchJar
 			if (text_dir.Text.Length == 0)
 				return;
 
-            Cursor.Current = Cursors.WaitCursor;
 			m_oJar.arr_class.Clear();	// リストクリア
 
 			string sDir =  text_dir.Text;
@@ -104,7 +101,6 @@ namespace SearchJar
 		// 絞込みボタン
 		private void button_filter_Click(object sender, System.EventArgs e)
 		{
-            Cursor.Current = Cursors.WaitCursor;
             lv_result.Items.Clear();	// リストクリア
 
 			string sFilter_jar = text_filter_jar.Text;
@@ -166,11 +162,20 @@ namespace SearchJar
 		// 設定を保存
 		private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+            Properties.Settings.Default.jar_width= this.lv_result.Columns[0].Width;
+            Properties.Settings.Default.class_width = this.lv_result.Columns[1].Width;
             Properties.Settings.Default.Save();	    // アプリ設定ファイル保存
 
 		}
 
+        private void lv_result_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            e.Item = (ListViewItem)this.m_arr_lv[e.ItemIndex];
+        }
 
-
-	}
+        private void lv_result_VirtualItemsSelectionRangeChanged(object sender, ListViewVirtualItemsSelectionRangeChangedEventArgs e)
+        {
+            //lv_result.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);  // 効かない？
+        }
+    }
 }

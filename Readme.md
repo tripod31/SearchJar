@@ -51,4 +51,4 @@ CSVファイルから読み込んでリスト表示します。
 #### 「絞込み」ボタン
 検索結果から書庫ファイル名、ファイル名で絞り込んでリスト表示します。  
 
-<img src="http://www.geocities.jp/tripod31hoge/images/searchzip.jpg">
+<img src="https://user-images.githubusercontent.com/6335693/50577220-0cc26e80-0e67-11e9-8e86-b6ff2ed815f5.jpg">
